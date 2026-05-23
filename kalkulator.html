@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Кредитен калкулатор - Одесос Банк</title>
+  <meta name="description" content="Изчислете месечна вноска, обща лихва и погасителен план с графики и предсрочно погасяване.">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Към основното съдържание</a>
+
+  <!-- ===== Хедър с навигация ===== -->
+  <header class="site-header">
+    <nav class="container nav" aria-label="Основна навигация">
+      <a href="index.html" class="brand">
+        <img src="images/logo.svg" alt="Лого на Одесос Банк">
+        <span class="brand-name">Одесос Банк<span>Варна - хай-тех кредити</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links">
+        <li><a href="index.html">Начало</a></li>
+        <li><a href="kalkulator.html" aria-current="page">Калкулатор</a></li>
+        <li><a href="produkti.html">Продукти</a></li>
+        <li><a href="za-nas.html">За банката</a></li>
+        <li><a href="rechnik.html">Речник</a></li>
+        <li><a href="kontakti.html">Контакти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Кредитен калкулатор</p>
+        <h1>Изчислете вашата кредитна схема</h1>
+        <p>Въведете параметрите на заема и веднага вижте месечната вноска, общата лихва и пълния погасителен план.</p>
+      </div>
+
+      <!-- Оформление в две колони: форма вляво, резултати вдясно -->
+      <div class="calc-layout">
+
+        <!-- ===== Колона 1: входни данни ===== -->
+        <form class="panel" id="calcForm" aria-label="Параметри на кредита" onsubmit="return false">
+          <h2>Параметри</h2>
+
+          <!-- Размер на заема: числово поле + плъзгач (синхронизирани от JS) -->
+          <div class="field">
+            <label for="amount">Размер на заема</label>
+            <div class="field-row">
+              <input type="number" id="amount" value="50000" min="1000" max="1000000" step="1000">
+              <span class="unit">EUR</span>
+            </div>
+            <input type="range" id="amountRange" min="1000" max="1000000" step="1000" value="50000" aria-label="Размер на заема (плъзгач)">
+          </div>
+
+          <!-- Годишна лихва -->
+          <div class="field">
+            <label for="rate">Годишен лихвен процент</label>
+            <div class="field-row">
+              <input type="number" id="rate" value="6.5" min="0" max="25" step="0.1">
+              <span class="unit">%</span>
+            </div>
+            <input type="range" id="rateRange" min="0" max="25" step="0.1" value="6.5" aria-label="Лихвен процент (плъзгач)">
+          </div>
+
+          <!-- Срок в години -->
+          <div class="field">
+            <label for="years">Срок на кредита</label>
+            <div class="field-row">
+              <input type="number" id="years" value="10" min="1" max="30" step="1">
+              <span class="unit">години</span>
+            </div>
+            <input type="range" id="yearsRange" min="1" max="30" step="1" value="10" aria-label="Срок в години (плъзгач)">
+          </div>
+
+          <!-- Схема на погасяване: два радио бутона -->
+          <div class="field">
+            <span style="display:block; font-weight:600; font-size:15px; margin-bottom:6px;">Схема на погасяване</span>
+            <div class="radio-group">
+              <label><input type="radio" name="ptype" value="annuity" checked> Анюитетни</label>
+              <label><input type="radio" name="ptype" value="declining"> Намаляващи</label>
+            </div>
+            <p class="hint">Анюитетни = равни месечни вноски. Намаляващи = постоянна главница и намаляваща вноска.</p>
+          </div>
+
+          <!-- Предсрочно погасяване (разгъващ се блок) -->
+          <details class="prepay-box">
+            <summary>Предсрочно погасяване</summary>
+            <div class="field" style="margin-top:10px;">
+              <label for="prepayLump">Еднократна сума</label>
+              <div class="field-row">
+                <input type="number" id="prepayLump" value="0" min="0" step="500"><span class="unit">EUR</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="prepayMonth">на месец номер</label>
+              <div class="field-row">
+                <input type="number" id="prepayMonth" value="12" min="1" step="1"><span class="unit">мес.</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="prepayMonthly">Месечно надвнасяне</label>
+              <div class="field-row">
+                <input type="number" id="prepayMonthly" value="0" min="0" step="50"><span class="unit">EUR</span>
+              </div>
+            </div>
+          </details>
+
+          <hr style="border:none; border-top:1px solid var(--border); margin:18px 0;">
+
+          <!-- Запазване на сценарии (използва localStorage) -->
+          <h3>Запазени сценарии</h3>
+          <div class="save-bar">
+            <input type="text" id="scenarioName" placeholder="Име на сценария" aria-label="Име на сценария">
+            <button type="button" class="btn btn-primary" id="saveBtn">Запази</button>
+          </div>
+          <div id="savedList"></div>
+        </form>
+
+        <!-- ===== Колона 2: резултати ===== -->
+        <div class="results">
+
+          <!-- Четири обобщаващи стойности -->
+          <div class="summary" aria-live="polite">
+            <div class="metric accent">
+              <div class="label">Месечна вноска</div>
+              <div class="value" id="mPayment">-</div>
+            </div>
+            <div class="metric">
+              <div class="label">Общо за плащане</div>
+              <div class="value" id="mTotal">-</div>
+            </div>
+            <div class="metric">
+              <div class="label">Обща лихва</div>
+              <div class="value" id="mInterest">-</div>
+            </div>
+            <div class="metric">
+              <div class="label">Срок</div>
+              <div class="value" id="mTerm">-</div>
+            </div>
+          </div>
+
+          <!-- Двете SVG диаграми (генерират се от charts.js) -->
+          <div class="charts">
+            <div class="chart-box">
+              <h3>Главница спрямо лихва</h3>
+              <div id="donut"></div>
+              <div class="legend">
+                <span><i style="background:#0e7c7b"></i> Главница</span>
+                <span><i style="background:#e8c58a"></i> Лихва</span>
+              </div>
+            </div>
+            <div class="chart-box">
+              <h3>Оставаща главница във времето</h3>
+              <div id="lineChart"></div>
+              <div class="legend">
+                <span><i style="background:#0e7c7b"></i> Остатък по кредита</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Погасителен план (попълва се от calculator.js) -->
+          <div class="table-wrap">
+            <table class="schedule">
+              <caption>Погасителен план (по месеци)</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Месец</th>
+                  <th scope="col">Вноска</th>
+                  <th scope="col">Лихва</th>
+                  <th scope="col">Главница</th>
+                  <th scope="col">Остатък</th>
+                </tr>
+              </thead>
+              <tbody id="scheduleBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand"><img src="images/logo.svg" alt=""><strong>Одесос Банк</strong></div>
+        <p>Финтех банка от Варна за хардуерни, софтуерни и роботизирани стартъпи и за студенти по информационни технологии.</p>
+      </div>
+      <div>
+        <h4>Навигация</h4>
+        <a href="kalkulator.html">Кредитен калкулатор</a>
+        <a href="produkti.html">Кредитни продукти</a>
+        <a href="za-nas.html">За банката</a>
+        <a href="rechnik.html">Речник на термините</a>
+      </div>
+      <div>
+        <h4>Контакт</h4>
+        <a href="kontakti.html">Свържете се с нас</a>
+        <p style="margin-top:8px; font-size:14px; color:#7ba2ab">бул. „Приморски" 1<br>9000 Варна, България</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>2025 Одесос Банк. Демонстрационен проект с образователна цел. Изчисленията са примерни и не представляват финансов съвет.</p>
+    </div>
+  </footer>
+
+  <!-- Зареждаме скриптовете в правилния ред -->
+  <script src="js/main.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/calculator.js"></script>
+</body>
+</html>

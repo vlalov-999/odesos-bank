@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Контакти - Одесос Банк</title>
+  <meta name="description" content="Свържете се с Одесос Банк - демонстрационна контактна форма с валидация.">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Към основното съдържание</a>
+
+  <!-- ===== Хедър с навигация ===== -->
+  <header class="site-header">
+    <nav class="container nav" aria-label="Основна навигация">
+      <a href="index.html" class="brand">
+        <img src="images/logo.svg" alt="Лого на Одесос Банк">
+        <span class="brand-name">Одесос Банк<span>Варна - хай-тех кредити</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links">
+        <li><a href="index.html">Начало</a></li>
+        <li><a href="kalkulator.html">Калкулатор</a></li>
+        <li><a href="produkti.html">Продукти</a></li>
+        <li><a href="za-nas.html">За банката</a></li>
+        <li><a href="rechnik.html">Речник</a></li>
+        <li><a href="kontakti.html" aria-current="page">Контакти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Контакти</p>
+        <h1>Свържете се с нас</h1>
+        <p>Имате въпрос за кредитен продукт? Изпратете ни съобщение.</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- Контактна форма (валидацията се прави от contact.js) -->
+        <form class="panel" id="contactForm" novalidate aria-label="Контактна форма">
+          <div class="form-field">
+            <label for="cf-name">Име *</label>
+            <input type="text" id="cf-name" name="name" required autocomplete="name">
+            <div class="form-error" id="err-name" aria-live="polite"></div>
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Имейл *</label>
+            <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="ivan.ivanov@abv.bg">
+            <div class="form-error" id="err-email" aria-live="polite"></div>
+          </div>
+          <div class="form-field">
+            <label for="cf-phone">Телефон</label>
+            <input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="+359 ...">
+            <div class="form-error" id="err-phone" aria-live="polite"></div>
+          </div>
+          <div class="form-field">
+            <label for="cf-msg">Съобщение *</label>
+            <textarea id="cf-msg" name="message" required></textarea>
+            <div class="form-error" id="err-msg" aria-live="polite"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Изпрати съобщение</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+
+        <!-- Информация за контакт -->
+        <div>
+          <ul class="info-list">
+            <li>
+              <strong>Адрес</strong>
+              <span>бул. „Приморски" 1, 9000 Варна, България</span>
+            </li>
+            <li>
+              <strong>Телефон</strong>
+              <span>+359 52 900 900</span>
+            </li>
+            <li>
+              <strong>Имейл</strong>
+              <span>info@odesos-bank.bg</span>
+            </li>
+            <li>
+              <strong>Работно време</strong>
+              <span>Понеделник - Събота, 9:30 - 18:30</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand"><img src="images/logo.svg" alt=""><strong>Одесос Банк</strong></div>
+        <p>Финтех банка от Варна за хардуерни, софтуерни и роботизирани стартъпи и за студенти по информационни технологии.</p>
+      </div>
+      <div>
+        <h4>Навигация</h4>
+        <a href="kalkulator.html">Кредитен калкулатор</a>
+        <a href="produkti.html">Кредитни продукти</a>
+        <a href="za-nas.html">За банката</a>
+        <a href="rechnik.html">Речник на термините</a>
+      </div>
+      <div>
+        <h4>Контакт</h4>
+        <a href="kontakti.html">Свържете се с нас</a>
+        <p style="margin-top:8px; font-size:14px; color:#7ba2ab">бул. „Приморски" 1<br>9000 Варна, България</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>2025 Одесос Банк. Демонстрационен проект с образователна цел. Изчисленията са примерни и не представляват финансов съвет.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

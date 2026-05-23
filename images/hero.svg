@@ -1,0 +1,49 @@
+<svg viewBox="0 0 600 460" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Абстрактна илюстрация: морски вълни, преливащи в технологична мрежа">
+  <defs>
+    <linearGradient id="sky" x1="300" y1="0" x2="300" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A2E3D"/>
+      <stop offset="1" stop-color="#0E5A5E"/>
+    </linearGradient>
+    <linearGradient id="wave1" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E7C7B"/>
+      <stop offset="1" stop-color="#21D4D4"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.22" r="0.5">
+      <stop stop-color="#21D4D4" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#21D4D4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="460" rx="24" fill="url(#sky)"/>
+  <rect width="600" height="460" rx="24" fill="url(#glow)"/>
+
+  <!-- Технологична мрежа (горна част) -->
+  <g stroke="#21D4D4" stroke-width="1" opacity="0.45">
+    <line x1="120" y1="90" x2="240" y2="60"/>
+    <line x1="240" y1="60" x2="360" y2="110"/>
+    <line x1="360" y1="110" x2="470" y2="70"/>
+    <line x1="240" y1="60" x2="300" y2="150"/>
+    <line x1="360" y1="110" x2="300" y2="150"/>
+    <line x1="120" y1="90" x2="180" y2="170"/>
+    <line x1="470" y1="70" x2="500" y2="160"/>
+  </g>
+  <g fill="#21D4D4">
+    <circle cx="120" cy="90" r="4"/>
+    <circle cx="240" cy="60" r="5"/>
+    <circle cx="360" cy="110" r="4"/>
+    <circle cx="470" cy="70" r="5"/>
+    <circle cx="300" cy="150" r="4"/>
+    <circle cx="180" cy="170" r="3"/>
+    <circle cx="500" cy="160" r="3"/>
+  </g>
+  <g fill="#E8C58A">
+    <circle cx="240" cy="60" r="2"/>
+    <circle cx="470" cy="70" r="2"/>
+  </g>
+
+  <!-- Вълни (долна част) -->
+  <path d="M0 250 C100 210 180 290 300 250 C420 210 500 290 600 250 L600 460 L0 460 Z" fill="url(#wave1)" opacity="0.25"/>
+  <path d="M0 300 C110 260 190 340 300 300 C410 260 500 340 600 300 L600 460 L0 460 Z" fill="url(#wave1)" opacity="0.4"/>
+  <path d="M0 355 C120 315 190 395 300 355 C410 315 500 395 600 355 L600 460 L0 460 Z" fill="url(#wave1)" opacity="0.7"/>
+  <path d="M0 250 C100 210 180 290 300 250 C420 210 500 290 600 250" stroke="#3DE7E7" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>
