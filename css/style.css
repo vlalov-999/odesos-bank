@@ -198,6 +198,11 @@ img { max-width: 100%; }
 .card-icon svg { width: 26px; height: 26px; }
 .card p { color: var(--text-light); font-size: 15px; margin-bottom: 0; }
 
+.card h2 {
+  font-size: 20px;    /* колкото е h3, за да се събере на ред */
+  margin-bottom: 8px;
+}
+
 /* ----  Калкулатор: оформление в две колони ---- */
 .calc-layout {
   display: grid;
@@ -205,6 +210,7 @@ img { max-width: 100%; }
   gap: 26px;
   align-items: start;
 }
+
 
 /* Бяла кутия (панел) */
 .panel {
